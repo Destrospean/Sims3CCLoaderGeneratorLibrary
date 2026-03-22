@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<RecipeMasterList>
+<!--
+LOCALIZATION KEYS:
+Gameplay/Excel/RecipeMasterList/Data:Recipe_Name
+-->
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<Data>
+  <Recipe_Key></Recipe_Key> <!-- MUST be unique -->
+  <Recipe_Name></Recipe_Name>
+  <CodeVersion></CodeVersion>
+  <ModelCodeVersion>BaseGame</ModelCodeVersion>
+  <Recipe_Description></Recipe_Description>
+  <Recipe_Class></Recipe_Class>
+  <Recipe_MakeTest_Function></Recipe_MakeTest_Function>
+  <Level></Level>
+  <Skill_Chunk></Skill_Chunk>
+  <Auto_Learn></Auto_Learn>
+  <Learnable>True</Learnable>
+  <Can_Be_Favorite></Can_Be_Favorite>
+  <Can_Burn></Can_Burn>
+  <Can_Spoil></Can_Spoil>
+  <Breakfast></Breakfast>
+  <Brunch></Brunch>
+  <Lunch></Lunch>
+  <Dinner></Dinner>
+  <Dessert></Dessert>
+  <PetFood></PetFood>
+  <Is_Harvestable></Is_Harvestable>
+  <Harvestable_Name></Harvestable_Name>
+  <Number_PetFood_Created></Number_PetFood_Created>
+  <Snack></Snack>
+  <Ingredient_1></Ingredient_1>
+  <Ingredient_2></Ingredient_2>
+  <Ingredient_3></Ingredient_3>
+  <Allows_Food_Processor></Allows_Food_Processor>
+  <Is_Vegetarian></Is_Vegetarian>
+  <Generic_Recipe_Name></Generic_Recipe_Name>
+  <Specific_Vegetarian_Name></Specific_Vegetarian_Name>
+  <Generic_Vegetarian_Name></Generic_Vegetarian_Name>
+  <Create_In_Fridge></Create_In_Fridge>
+  <Container_Type></Container_Type>
+  <Can_Make_Single></Can_Make_Single>
+  <Can_Make_Group></Can_Make_Group>
+  <Single_Full></Single_Full>
+  <Single_Half></Single_Half>
+  <Single_Empty></Single_Empty>
+  <Single_Full_Burnt></Single_Full_Burnt>
+  <Single_Half_Burnt></Single_Half_Burnt>
+  <Single_Empty_Burnt></Single_Empty_Burnt>
+  <Group_Full></Group_Full>
+  <Group_Half></Group_Half>
+  <Group_Empty></Group_Empty>
+  <Group_Full_Burnt></Group_Full_Burnt>
+  <Group_Half_Burnt></Group_Half_Burnt>
+  <Group_Empty_Burnt></Group_Empty_Burnt>
+  <Utensil></Utensil>
+  <VFXName_Full></VFXName_Full>
+  <VFXName_Half></VFXName_Half>
+  <RegisterCost></RegisterCost>
+  <RequiredWorld></RequiredWorld>
+  <VenueCost>0</VenueCost>
+  <AdultOnly></AdultOnly>
+  
+  <!-- New tags for CCL -->
+  <!-- Tip: Always use Basegame ingredients in the last position of the sequence to make sure the recipe is always cookable -->
+  <SubstIngredient_1></SubstIngredient_1>
+  <SubstIngredient_2></SubstIngredient_2>
+  <SubstIngredient_3></SubstIngredient_3>
+</Data>
+
+</RecipeMasterList>

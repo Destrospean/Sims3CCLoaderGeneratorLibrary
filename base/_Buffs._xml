@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<Buffs>
+<!--
+LOCALIZATION KEYS: 
+Gameplay/Excel/buffs/BuffList:BuffName
+Gameplay/Excel/buffs/BuffList:BuffDescription
+Gameplay/Excel/buffs/BuffOrigins:0x780026DD6BD6414C (your BuffOrigin HASHED)
+-->
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<BuffList>
+  <Hex></Hex> <!-- MUST be unique -->
+  <BuffName></BuffName> <!-- The name must be Localized (STBL file) -->
+  <BuffDescription></BuffDescription>
+  <Version>0.1</Version> <!-- Must have -->
+  <SKU>BaseGame</SKU> 
+  <BuffHelpText></BuffHelpText>
+  <ThumbFilename>placeholder</ThumbFilename>
+  <AxisEffected></AxisEffected>
+  <EffectValue></EffectValue>
+  <DelayTimer>0</DelayTimer>
+  <TimeoutLength></TimeoutLength>
+  <PermaMoodlet>False</PermaMoodlet>
+  <PermaMoodletColor></PermaMoodletColor>
+  <PolarityOverride>NoOverride</PolarityOverride>
+  <SolveCommodity></SolveCommodity>
+  <AttemptAutoSolve>False</AttemptAutoSolve>
+  <SolveTime></SolveTime>
+  <Stackable>False</Stackable>
+  <IsExtreme>False</IsExtreme>
+  <FacialIdle></FacialIdle>
+  <IncreasedEffectiveness></IncreasedEffectiveness>
+  <ReducedEffectiveness></ReducedEffectiveness>
+  <CustomClassName></CustomClassName>
+  <Topic></Topic>
+  <ShowBallon>True</ShowBallon>
+  <Travel>False</Travel>
+  <DisallowedOccults></DisallowedOccults>
+  <JazzStateSuffix></JazzStateSuffix>
+  <SpeciesAvailability>All</SpeciesAvailability>
+  <NeededTraitForRobot>RobotHiddenTrait</NeededTraitForRobot>
+
+  <!-- New tags for CCL -->
+  <Effect1></Effect1>
+  <Effect2></Effect2>
+  <Effect3></Effect3>
+</BuffList>
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<BuffOrigin>
+  <Hex></Hex> <!-- MUST be unique -->
+</BuffOrigin>
+ 
+</Buffs>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CCLoader>
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<Data>
+  <Name></Name>
+  <Creator></Creator>
+  <Books_XML></Books_XML> 
+  <Plants_XML></Plants_XML>
+  <Recipes_XML></Recipes_XML>
+  <Ingredients_XML></Ingredients_XML>
+  <Buffs_XML></Buffs_XML>
+  <EventHandlers_XML></EventHandlers_XML>
+</Data>
+</CCLoader>
