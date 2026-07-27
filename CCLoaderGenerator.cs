@@ -204,7 +204,7 @@ namespace Destrospean.CCLoaderGeneratorLibrary
 
         public IResourceIndexEntry GetResourceIndexEntry(XmlTypes xmlType)
         {
-            return Package.Find(x => x.ResourceType == 0x333406C && x.Instance == FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + "._xml")));
+            return Package.Find(x => x.ResourceType == 0x333406C && x.Instance == FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + ".xml")));
         }
 
         public void ReplaceXmlResource(XmlTypes xmlType, XmlDocument xmlDocument)
