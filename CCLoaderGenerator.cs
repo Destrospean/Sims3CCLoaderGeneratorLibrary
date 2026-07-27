@@ -125,22 +125,22 @@ namespace Destrospean.CCLoaderGeneratorLibrary
                         childNode.InnerText = creator;
                         break;
                     case "Books_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Books) == 0 ? "" : AssemblyName + "_Books.xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.Books) == 0 ? "" : AssemblyName + "_Books._xml";
                         break;
                     case "Buffs_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Buffs) == 0 ? "" : AssemblyName + "_Buffs.xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.Buffs) == 0 ? "" : AssemblyName + "_Buffs._xml";
                         break;
                     case "EventHandlers_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.EventHandlers) == 0 ? "" : AssemblyName + "_EventHandlers.xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.EventHandlers) == 0 ? "" : AssemblyName + "_EventHandlers._xml";
                         break;
                     case "Ingredients_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Ingredients) == 0 ? "" : AssemblyName + "_Ingredients.xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.Ingredients) == 0 ? "" : AssemblyName + "_Ingredients._xml";
                         break;
                     case "Plants_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Plants) == 0 ? "" : AssemblyName + "_Plants.xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.Plants) == 0 ? "" : AssemblyName + "_Plants._xml";
                         break;
                     case "Recipes_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Recipes) == 0 ? "" : AssemblyName + "_Recipes.xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.Recipes) == 0 ? "" : AssemblyName + "_Recipes._xml";
                         break;
                 }
             }
@@ -204,7 +204,7 @@ namespace Destrospean.CCLoaderGeneratorLibrary
 
         public IResourceIndexEntry GetResourceIndexEntry(XmlTypes xmlType)
         {
-            return Package.Find(x => x.ResourceType == 0x333406C && x.Instance == FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + ".xml")));
+            return Package.Find(x => x.ResourceType == 0x333406C && x.Instance == FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + "._xml")));
         }
 
         public void ReplaceXmlResource(XmlTypes xmlType, XmlDocument xmlDocument)
