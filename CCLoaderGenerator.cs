@@ -37,11 +37,7 @@ namespace Destrospean.CCLoaderGeneratorLibrary
         public int CompareTo(IResourceKey other)
         {
             var result = ResourceType.CompareTo(other.ResourceType);
-            if (result != 0)
-            {
-                return result;
-            }
-            if ((result = ResourceGroup.CompareTo(other.ResourceGroup)) != 0)
+            if (result != 0 || (result = ResourceGroup.CompareTo(other.ResourceGroup)) != 0)
             {
                 return result;
             }
@@ -199,15 +195,32 @@ namespace Destrospean.CCLoaderGeneratorLibrary
         public XmlDocument GetResourceAsXmlDocument(XmlTypes xmlType)
         {
             var xmlDocument = new XmlDocument();
-            var xmlStream = ((APackage)Package).GetResource(Package.Find(x => x.ResourceType == 0x333406C && x.Instance == System.Security.Cryptography.FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType.ToString() + ".xml"))));
+            var xmlStream = ((APackage)Package).GetResource(Package.Find(x => x.ResourceType == 0x333406C && x.Instance == System.Security.Cryptography.FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + ".xml"))));
             xmlStream.Position = 0;
             xmlDocument.Load(xmlStream);
             return xmlDocument;
         }
 
+        public void ReplaceXmlResource(XmlTypes xmlType, XmlDocument xmlDocument)
+        {
+            var resourceIndexEntry = Package.Find(x => x.ResourceType == 0x333406C && x.Instance == System.Security.Cryptography.FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + ".xml")));
+            Package.DeleteResource(resourceIndexEntry);
+            var xmlStream = new MemoryStream();
+            xmlDocument.Save(xmlStream);
+            xmlStream.Position = 0;
+            Package.AddResource(resourceIndexEntry, xmlStream, true);
+        }
+
+        public void ReplaceXmlResource(XmlTypes xmlType, string xmlString)
+        {
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(xmlString);
+            ReplaceXmlResource(xmlType, xmlDocument);
+        }
+
         public IResourceIndexEntry GetResourceIndexEntry(XmlTypes xmlType)
         {
-            return Package.Find(x => x.Instance == System.Security.Cryptography.FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType.ToString() + ".xml")));
+            return Package.Find(x => x.Instance == System.Security.Cryptography.FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + ".xml")));
         }
     }
 }
