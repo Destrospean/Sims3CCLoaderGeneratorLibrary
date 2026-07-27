@@ -93,7 +93,7 @@ namespace Destrospean.CCLoaderGeneratorLibrary
         {
             AssemblyName = assemblyName;
             Package = package;
-            PopulateXmlDocuments(System.Reflection.Assembly.GetCallingAssembly());
+            PopulateXmlDocuments(typeof(CCLoaderGenerator).Assembly);
         }
 
         void PopulateXmlDocuments(System.Reflection.Assembly assembly) 
@@ -159,7 +159,7 @@ namespace Destrospean.CCLoaderGeneratorLibrary
 
         public void AddResources(XmlTypes xmlTypes = XmlTypes.All)
         {
-            var assembly = AssemblyDefinition.ReadAssembly(System.Reflection.Assembly.GetCallingAssembly().GetManifestResourceStream("Destrospean.CCLoaderGeneratorLibrary.base.CCLoaderData.dll"));
+            var assembly = AssemblyDefinition.ReadAssembly(typeof(CCLoaderGenerator).Assembly.GetManifestResourceStream("Destrospean.CCLoaderGeneratorLibrary.base.CCLoaderData.dll"));
             assembly.Name.Name = AssemblyName;
             assembly.MainModule.Name = AssemblyName + ".dll";
             var assemblyStream = new MemoryStream();
