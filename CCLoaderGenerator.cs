@@ -213,7 +213,6 @@ namespace Destrospean.CCLoaderGeneratorLibrary
             Package.DeleteResource(resourceIndexEntry);
             var stream = new MemoryStream();
             xmlDocument.Save(stream);
-            stream.Position = 0;
             Package.AddResource(resourceIndexEntry, stream, true);
         }
 
