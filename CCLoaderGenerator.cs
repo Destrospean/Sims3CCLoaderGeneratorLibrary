@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
 using System.Xml;
 using Mono.Cecil;
 using s3pi.Interfaces;
@@ -165,7 +166,7 @@ namespace Destrospean.CCLoaderGeneratorLibrary
             // Save the assembly with the new name
             assembly.Write(assemblyStream);
             // Add the resources
-            var scriptResourceKeyInstance = System.Security.Cryptography.FNV64.GetHash(AssemblyName + ".dll");
+            var scriptResourceKeyInstance = FNV64.GetHash(AssemblyName + ".dll");
             var nameMapResource = new NameMapResource.NameMapResource(0, null);
             nameMapResource.Add(scriptResourceKeyInstance, AssemblyName + ".dll");
             foreach (var xmlDocumentKvp in mXmlDocuments)
@@ -180,7 +181,7 @@ namespace Destrospean.CCLoaderGeneratorLibrary
                 if (xmlDocumentKvp.Key != kResourcePathPrefix + "data._xml")
                 {
                     var xmlResourceName = AssemblyName + xmlDocumentKvp.Key.Substring(xmlDocumentKvp.Key.IndexOf(".base.") + 6).Replace("_xml", "xml");
-                    xmlResourceKey = System.Security.Cryptography.FNV64.GetHash(xmlResourceName);
+                    xmlResourceKey = FNV64.GetHash(xmlResourceName);
                     nameMapResource.Add(xmlResourceKey, xmlResourceName);
                 }
                 Package.AddResource(new ResourceKey(0x333406C, 0, xmlResourceKey), xmlStream, true);
@@ -195,20 +196,25 @@ namespace Destrospean.CCLoaderGeneratorLibrary
         public XmlDocument GetResourceAsXmlDocument(XmlTypes xmlType)
         {
             var xmlDocument = new XmlDocument();
-            var xmlStream = ((APackage)Package).GetResource(Package.Find(x => x.ResourceType == 0x333406C && x.Instance == System.Security.Cryptography.FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + ".xml"))));
+            var xmlStream = ((APackage)Package).GetResource(GetResourceIndexEntry(xmlType));
             xmlStream.Position = 0;
             xmlDocument.Load(xmlStream);
             return xmlDocument;
         }
 
+        public IResourceIndexEntry GetResourceIndexEntry(XmlTypes xmlType)
+        {
+            return Package.Find(x => x.ResourceType == 0x333406C && x.Instance == FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + ".xml")));
+        }
+
         public void ReplaceXmlResource(XmlTypes xmlType, XmlDocument xmlDocument)
         {
-            var resourceIndexEntry = Package.Find(x => x.ResourceType == 0x333406C && x.Instance == System.Security.Cryptography.FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + ".xml")));
+            var resourceIndexEntry = GetResourceIndexEntry(xmlType);
             Package.DeleteResource(resourceIndexEntry);
-            var xmlStream = new MemoryStream();
-            xmlDocument.Save(xmlStream);
-            xmlStream.Position = 0;
-            Package.AddResource(resourceIndexEntry, xmlStream, true);
+            var stream = new MemoryStream();
+            xmlDocument.Save(stream);
+            stream.Position = 0;
+            Package.AddResource(resourceIndexEntry, stream, true);
         }
 
         public void ReplaceXmlResource(XmlTypes xmlType, string xmlString)
@@ -216,11 +222,6 @@ namespace Destrospean.CCLoaderGeneratorLibrary
             var xmlDocument = new XmlDocument();
             xmlDocument.LoadXml(xmlString);
             ReplaceXmlResource(xmlType, xmlDocument);
-        }
-
-        public IResourceIndexEntry GetResourceIndexEntry(XmlTypes xmlType)
-        {
-            return Package.Find(x => x.Instance == System.Security.Cryptography.FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + ".xml")));
         }
     }
 }
