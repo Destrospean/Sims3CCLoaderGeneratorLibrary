@@ -211,9 +211,9 @@ namespace Destrospean.CCLoaderGeneratorLibrary
         {
             var resourceIndexEntry = GetResourceIndexEntry(xmlType);
             Package.DeleteResource(resourceIndexEntry);
-            var stream = new MemoryStream();
-            xmlDocument.Save(stream);
-            Package.AddResource(resourceIndexEntry, stream, true);
+            var xmlStream = new MemoryStream();
+            xmlDocument.Save(xmlStream);
+            Package.AddResource(resourceIndexEntry, xmlStream, true);
         }
 
         public void ReplaceXmlResource(XmlTypes xmlType, string xmlString)
