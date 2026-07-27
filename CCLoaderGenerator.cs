@@ -93,7 +93,7 @@ namespace Destrospean.CCLoaderGeneratorLibrary
         {
             AssemblyName = assemblyName;
             Package = package;
-            PopulateXmlDocuments(typeof(CCLoaderGenerator).Assembly);
+            PopulateXmlDocuments(System.Reflection.Assembly.GetCallingAssembly());
         }
 
         void PopulateXmlDocuments(System.Reflection.Assembly assembly) 
@@ -125,22 +125,22 @@ namespace Destrospean.CCLoaderGeneratorLibrary
                         childNode.InnerText = creator;
                         break;
                     case "Books_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Books) == 0 ? "" : AssemblyName + "_Books._xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.Books) == 0 ? "" : AssemblyName + "_Books.xml";
                         break;
                     case "Buffs_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Buffs) == 0 ? "" : AssemblyName + "_Buffs._xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.Buffs) == 0 ? "" : AssemblyName + "_Buffs.xml";
                         break;
                     case "EventHandlers_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.EventHandlers) == 0 ? "" : AssemblyName + "_EventHandlers._xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.EventHandlers) == 0 ? "" : AssemblyName + "_EventHandlers.xml";
                         break;
                     case "Ingredients_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Ingredients) == 0 ? "" : AssemblyName + "_Ingredients._xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.Ingredients) == 0 ? "" : AssemblyName + "_Ingredients.xml";
                         break;
                     case "Plants_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Plants) == 0 ? "" : AssemblyName + "_Plants._xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.Plants) == 0 ? "" : AssemblyName + "_Plants.xml";
                         break;
                     case "Recipes_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Recipes) == 0 ? "" : AssemblyName + "_Recipes._xml";
+                        childNode.InnerText = (xmlTypes & XmlTypes.Recipes) == 0 ? "" : AssemblyName + "_Recipes.xml";
                         break;
                 }
             }
@@ -159,7 +159,7 @@ namespace Destrospean.CCLoaderGeneratorLibrary
 
         public void AddResources(XmlTypes xmlTypes = XmlTypes.All)
         {
-            var assembly = AssemblyDefinition.ReadAssembly(typeof(CCLoaderGenerator).Assembly.GetManifestResourceStream("Destrospean.CCLoaderGeneratorLibrary.base.CCLoaderData.dll"));
+            var assembly = AssemblyDefinition.ReadAssembly(System.Reflection.Assembly.GetCallingAssembly().GetManifestResourceStream("Destrospean.CCLoaderGeneratorLibrary.base.CCLoaderData.dll"));
             assembly.Name.Name = AssemblyName;
             assembly.MainModule.Name = AssemblyName + ".dll";
             var assemblyStream = new MemoryStream();

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<EventHandlerList>
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<EventHandler>
+  <EventTypeId>kEventNone</EventTypeId>
+  <Parameters></Parameters>
+  <BuffName>Undefined</BuffName>
+  <BuffOrigin>None</BuffOrigin>
+  <DelegateMethod></DelegateMethod> <!-- Requires custom script -->
+</EventHandler>
+
+</EventHandlerList>

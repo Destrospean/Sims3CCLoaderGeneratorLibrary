@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<Books>
+<!-- By Arsil -->
+<!-- LOCALIZATION KEY: Gameplay/Excel/Books/<BookType>:<BookTitle|BookAuthor>
+Examples:
+  Gameplay/Excel/Books/BookGeneral:MYBOOKTITLE_BookGeneral_Title
+  Gameplay/Excel/Books/BookGeneral:MYBOOKAUTHOR_BookGeneral_Author
+  Gameplay/Excel/Books/BookToddler:MYBOOKTITLE_BookToddler_Title
+  Gameplay/Excel/Books/BookToddler:MYBOOKAUTHOR_BookToddler_Author
+  Gameplay/Excel/Books/WrittenBookTitles:MYBOOKTITLE_WBT_Title1
+ -->
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<BookGeneral>
+  <Title>Title</Title>  <!-- MUST be unique -->
+  <Author>Sim</Author>
+  <Genre>None</Genre>
+  <Length>0</Length>
+  <Value>0</Value>
+  <PagesMinNorm>1</PagesMinNorm>
+  <PagesMinBW>2</PagesMinBW>
+  <NotInBookStore></NotInBookStore>
+  <GeometryState>BookSmallThin</GeometryState>
+  <MaterialState>bookToddlerFunny</MaterialState>
+  <AllowedWorldTypes>Base,Downtown,University,Future</AllowedWorldTypes>
+  <AllowedWorlds></AllowedWorlds>
+  <CodeVersion>Basegame</CodeVersion>
+</BookGeneral>
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<BookToddler>
+  <Title>Test</Title>  <!-- MUST be unique -->
+  <Author>Author</Author>
+  <Kind>None</Kind>
+  <Length>180</Length>
+  <Value>100</Value>
+  <PagesMinNorm>0.045</PagesMinNorm>
+  <PagesMinBW>0.0675</PagesMinBW>
+  <NotInBookStore>False</NotInBookStore>
+  <GeometryState>BookLargeThick</GeometryState>
+  <MaterialState>bookToddlerFunny</MaterialState>
+  <AllowedWorldTypes>Base,Downtown,University,Future</AllowedWorldTypes>
+  <AllowedWorlds></AllowedWorlds>
+  <CodeVersion>Basegame</CodeVersion>
+</BookToddler>
+ 
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<BookFish>
+  <Title>Placeholder</Title>  <!-- MUST be unique -->
+  <Author>UnknownComposer</Author>
+  <SkillLevel>0</SkillLevel>
+  <Length>0</Length>
+  <Value>0</Value>
+  <PagesMinNorm>1</PagesMinNorm>
+  <PagesMinBW>2</PagesMinBW>
+  <FishTypes></FishTypes>
+  <NotInBookStore>False</NotInBookStore>
+  <GeometryState>BookSmallThin</GeometryState>
+  <MaterialState>bookMedical</MaterialState>
+  <AllowedWorldTypes>Base,Downtown,University,Future</AllowedWorldTypes>
+  <AllowedWorlds></AllowedWorlds>
+  <CodeVersion>Basegame</CodeVersion>
+</BookFish>
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<BookSkill>
+  <Title>Test</Title>  <!-- MUST be unique -->
+  <Author>Author</Author>
+  <Skill>None</Skill>
+  <MinSkill>0</MinSkill>
+  <MaxSkill>10</MaxSkill>
+  <SkillPointsPerPage></SkillPointsPerPage>
+  <Length>0</Length>
+  <Value>0</Value>
+  <OneUse></OneUse>
+  <PagesMinNorm>1</PagesMinNorm>
+  <PagesMinBW>1.25</PagesMinBW>
+  <UnlockSkill></UnlockSkill>
+  <ChildCanRead></ChildCanRead>
+  <NotInBookStore>False</NotInBookStore>
+  <GeometryState>BookSmallThin</GeometryState>
+  <MaterialState>bookHandinessIntro</MaterialState>
+  <AllowedWorldTypes>Base,Downtown,University,Future</AllowedWorldTypes>
+  <AllowedWorlds></AllowedWorlds>
+  <CodeVersion>Basegame</CodeVersion>
+</BookSkill>
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<BookRecipe>
+  <Title>Title</Title>  <!-- MUST be unique -->
+  <Author></Author>
+  <Recipe>None</Recipe>
+  <Length>0</Length>
+  <Value>0</Value>
+  <PagesMinNorm>1</PagesMinNorm>
+  <PagesMinBW>2</PagesMinBW>
+  <NotInBookStore>False</NotInBookStore>
+  <GeometryState>BookMediumThick</GeometryState>
+  <MaterialState></MaterialState>
+  <AllowedWorldTypes>Base,Downtown,University,Future</AllowedWorldTypes>
+  <AllowedWorlds></AllowedWorlds>
+  <CodeVersion>Basegame</CodeVersion>
+</BookRecipe>
+
+<!-- Only readable if Sim has cooking level >= recipe level
+     and the recipe doesn't have auto_learn true -->
+ 
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<MedicalJournal>
+  <Title>Title</Title>  <!-- MUST be unique -->
+  <Author>InstituteOfMedicine</Author>
+  <CareerLevel>0</CareerLevel>
+  <Length>0</Length>
+  <Value>0</Value>
+  <GeometryState>BookLargeThin</GeometryState>
+  <MaterialState>bookMedical</MaterialState>
+  <PagesMinNorm>1</PagesMinNorm>
+  <PagesMinBW>2</PagesMinBW>
+  <NotInBookStore>True</NotInBookStore>
+  <AllowedWorldTypes>Undefined</AllowedWorldTypes>
+  <AllowedWorlds></AllowedWorlds>
+  <CodeVersion>Basegame</CodeVersion>
+</MedicalJournal>
+
+<!-- THE FIRST ENTRY MUST BE COMPILED, COPY THIS TEMPLATE AND CHANGE ALL KEYS -->
+<!--
+<WrittenBookTitles>
+  <Fiction>FictionNovel</Fiction>
+  <NonFiction>NonFictionNovel</NonFiction>
+  <Trashy>TrashyNovel</Trashy>
+  <Drama>DramaNovel</Drama>
+  <SciFi>SciFiNovel</SciFi>
+  <Fantasy>FantasyNovel</Fantasy>
+  <Humor>HumorNovel</Humor>
+  <Satire>SatireNovel</Satire>
+  <Mystery>MysteryNovel</Mystery>
+  <Romance>RomanceNovel</Romance>
+  <Historical>HistoricalNovel</Historical>
+  <Childrens>ChildrensBook</Childrens>
+  <Vaudeville>VaudevilleNovel</Vaudeville>
+  <Biography>Biography</Biography>
+  <Article>JournalismArticle</Article>
+  <Autobiography>Autobiography</Autobiography>
+  <Masterpiece>Masterpiece</Masterpiece>
+  <PoliticalMemoir>PoliticalMemoir</PoliticalMemoir>
+  <LifeStory>LifeStory</LifeStory>
+  <ActionScreenplay>ActionScreenplay</ActionScreenplay>
+  <RomanticComedyScreenplay>RomanticComedyScreenplay</RomanticComedyScreenplay>
+  <DramaScreenplay>DramaScreenplay</DramaScreenplay>
+  <SciFiScreenplay>SciFiScreenplay</SciFiScreenplay>
+  <IndieScreenplay>IndieScreenplay</IndieScreenplay>
+  <Poetry>Poetry</Poetry>
+  <Horror>Horror</Horror>
+  <Sports>Sports</Sports>
+  <Comic>Comic</Comic>
+</WrittenBookTitles>
+-->
+ 
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<SheetMusic>
+  <Title></Title>  <!-- MUST be unique -->
+  <Author></Author>
+  <SkillName>None</SkillName>
+  <SkillLevel>0</SkillLevel>
+  <Length>0</Length>
+  <Value>0</Value>
+  <PagesMinNorm>1</PagesMinNorm>
+  <PagesMinBW>2</PagesMinBW>
+  <AudioClip></AudioClip>
+  <GeometryState>BookLargeThin</GeometryState>
+  <MaterialState>bookGuitarIntro</MaterialState>
+  <NotInBookStore>False</NotInBookStore>
+  <AllowedWorldTypes>Base,Downtown,University,Future</AllowedWorldTypes>
+  <AllowedWorlds></AllowedWorlds>
+  <CodeVersion>Basegame</CodeVersion>
+</SheetMusic>
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<!--<WrittenBookMaterials>-->
+<!-- THERE'S NO WAY TO USE CUSTOM MATERIALS (MTST), SINCE THEY HAVE TO BE
+     DECLARED/DEFINED IN THE MESH OF THE BOOK IN ORDER TO WORK.
+     SO THERE'S NO POINT IN DEFINING <WrittenBookMaterials>	 -->
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<BookAlchemyRecipe>
+  <Title>Title</Title>  <!-- MUST be unique -->
+  <Author></Author>
+  <AlchemyRecipeKey></AlchemyRecipeKey>
+  <Length>0</Length>
+  <Value>0</Value>
+  <PagesMinNorm>1</PagesMinNorm>
+  <PagesMinBW>2</PagesMinBW>
+  <NotInBookStore>False</NotInBookStore>
+  <GeometryState>BookMediumThick</GeometryState>
+  <MaterialState>BookRecipe1</MaterialState>
+  <AllowedWorldTypes>Base,Downtown,University,Future</AllowedWorldTypes>
+  <AllowedWorlds></AllowedWorlds>
+  <CodeVersion>Basegame</CodeVersion>
+</BookAlchemyRecipe>
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<BookComics>
+  <Title>Title</Title>  <!-- MUST be unique -->
+  <Author>Sim</Author>
+  <Genre>None</Genre>
+  <Length>0</Length>
+  <Value>0</Value>
+  <PagesMinNorm>1</PagesMinNorm>
+  <PagesMinBW>2</PagesMinBW>
+  <NotInBookStore></NotInBookStore>
+  <GeometryState>BookSmallThin</GeometryState>
+  <MaterialState>EP9bookComic1</MaterialState>
+  <AllowedWorldTypes>Base,Downtown,University,Future</AllowedWorldTypes>
+  <AllowedWorlds></AllowedWorlds>
+  <CodeVersion>Basegame</CodeVersion>
+  <MinValue>5</MinValue>
+  <MaxValue>100</MaxValue>
+  <MaxIssues>60</MaxIssues>
+</BookComics>
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<AcademicTextBook>
+  <Title>Title</Title>  <!-- MUST be unique -->
+  <Author>Sim</Author>
+  <Degree>Undefined</Degree>
+  <Length>500</Length>
+  <Value>200</Value>
+  <PagesMinNorm>1</PagesMinNorm>
+  <PagesMinBW>2</PagesMinBW>
+  <NotInBookStore>False</NotInBookStore>
+  <GeometryState>BookLargeThick</GeometryState>
+  <MaterialState>bookGeneric1</MaterialState>
+  <AllowedWorldTypes>Base, Downtown, University, Future</AllowedWorldTypes>
+  <AllowedWorlds></AllowedWorlds>
+  <CodeVersion>EP9</CodeVersion>
+</AcademicTextBook>
+
+</Books>

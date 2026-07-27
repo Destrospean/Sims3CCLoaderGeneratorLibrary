@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<Plants>
+<!--
+LOCALIZATION KEYS:
+Gameplay/Excel/Plants/PlantList:LocalizationKeyPlantName
+Gameplay/Excel/Plants/PlantList:LocalizationKeyDescription
+Gameplay/Excel/Plants/PlantList:LocalizationKeySeedName
+-->
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<PlantList>
+  <PlantName></PlantName>  <!-- MUST be unique -->
+  <LocalizationKeyPlantName></LocalizationKeyPlantName>
+  <LocalizationKeySeedName></LocalizationKeySeedName>
+  <LocalizationKeyDescription></LocalizationKeyDescription>
+  <CodeVersion>BaseGame</CodeVersion>
+  <Rarity># HIDDEN COLUMNS</Rarity>
+  <LimitedAvailability>False</LimitedAvailability>
+  <OpportunityPrerequisite>Undefined</OpportunityPrerequisite>
+  <SkillRequirement></SkillRequirement>
+  <SkillDifficulty></SkillDifficulty>
+  <SkillPointsPlant></SkillPointsPlant>
+  <SkillPointsHarvest></SkillPointsHarvest>
+  <PerfThresholdAvgToGood>50</PerfThresholdAvgToGood>
+  <PerfThresholdGoodToGreat>75</PerfThresholdGoodToGreat>
+  <PerfBonusDrySoil>0</PerfBonusDrySoil>
+  <PerfBonusNeutralSoil>5</PerfBonusNeutralSoil>
+  <PerfBonusWetSoil>10</PerfBonusWetSoil>
+  <WaterDecay></WaterDecay>
+  <WeedProblem></WeedProblem>
+  <HarvestStateDurationMin></HarvestStateDurationMin>
+  <HarvestStateDurationMax></HarvestStateDurationMax>
+  <NumLifetimeHarvestables></NumLifetimeHarvestables>
+  <NumHarvestablesMin></NumHarvestablesMin>
+  <NumHarvestablesMax></NumHarvestablesMax>
+  <MedatorName></MedatorName>
+  <VFXName></VFXName>
+</PlantList>
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<PlantableNonIngredients>
+  <Key></Key>  <!-- MUST be unique -->
+  <PlantableObjMedatorName></PlantableObjMedatorName>
+  <LocalizationKey></LocalizationKey>
+  <PlantNameKey></PlantNameKey>
+  <ModelName></ModelName>
+  <IsEdible></IsEdible>
+</PlantableNonIngredients>
+
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<MedatorInstanceList>
+  <MedatorName></MedatorName>  <!-- MUST be unique -->
+  <PlantHeight></PlantHeight>
+  <ModelName></ModelName>
+  <ProductVersion></ProductVersion>
+</MedatorInstanceList>
+
+
+</Plants>

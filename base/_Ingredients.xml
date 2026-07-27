@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<Ingredients>
+<!--
+LOCALIZATION KEYS:
+Gameplay/Excel/Ingredients/Data:Ingredient_Name
+-->
+<!-- LEAVE THE FIRST ENTRY ALONE -->
+<Data>
+  <Ingredient_Key></Ingredient_Key> <!-- MUST be unique -->
+  <Ingredient_Name></Ingredient_Name>
+  <CodeVersion>BaseGame</CodeVersion>
+  <DataVersion>BaseGame</DataVersion>
+  <RequiredWorld></RequiredWorld>
+  <Rarity>Common</Rarity>
+  <Abstract></Abstract>
+  <UiTab></UiTab>
+  <Parent></Parent>
+  <Medator_Name></Medator_Name>
+  <Model_Name></Model_Name>
+  <Thumbnail_Model_Name></Thumbnail_Model_Name>
+  <Plant_Name></Plant_Name>
+  <Fertilizer_Value></Fertilizer_Value>
+  <Fertilizer_Days></Fertilizer_Days>
+  <Nectar_Value>0</Nectar_Value>
+  <DrinkQuality_Min>0</DrinkQuality_Min>
+  <DrinkQuality_Max>0</DrinkQuality_Max>
+  <AncientNectarWeight>0</AncientNectarWeight>
+  <Price></Price>
+  <CanBuyFromStore></CanBuyFromStore>
+  <CanBeSoldInNectarRegister>False</CanBeSoldInNectarRegister>
+  <PetSpeciesThatCanEatOffGround></PetSpeciesThatCanEatOffGround>
+  <PetSpeciesThatCanEatOffPlant></PetSpeciesThatCanEatOffPlant>
+  <IsMushrooms>False</IsMushrooms>
+  <SpawnAtNightOnly>False</SpawnAtNightOnly>
+  <SpawnInLunarCycle></SpawnInLunarCycle>
+  <IsEdible></IsEdible>
+  <WerewolfEdibleRaw>False</WerewolfEdibleRaw>
+  
+  <!-- Tags ignored by CCL -->
+  <PostIngestionBuff>Undefined</PostIngestionBuff>
+  <PostIngestionBuffOrigin>None</PostIngestionBuffOrigin>
+</Data>
+   
+</Ingredients>
