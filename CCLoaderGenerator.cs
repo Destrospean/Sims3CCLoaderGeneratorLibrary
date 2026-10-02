@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
-using System.Xml;
+using System.Xml.Linq;
 using Mono.Cecil;
 using s3pi.Interfaces;
 
@@ -70,7 +70,7 @@ namespace Destrospean.CCLoaderGeneratorLibrary
     {
         const string kResourcePathPrefix = "Destrospean.CCLoaderGeneratorLibrary.base._";
 
-        readonly Dictionary<string, XmlDocument> mXmlDocuments = new Dictionary<string, XmlDocument>();
+        readonly Dictionary<string, XDocument> mDocuments = new Dictionary<string, XDocument>();
 
         public readonly string AssemblyName;
 
@@ -93,62 +93,61 @@ namespace Destrospean.CCLoaderGeneratorLibrary
         {
             AssemblyName = assemblyName;
             Package = package;
-            PopulateXmlDocuments(typeof(CCLoaderGenerator).Assembly);
+            PopulateDocuments(typeof(CCLoaderGenerator).Assembly);
         }
 
-        void PopulateXmlDocuments(System.Reflection.Assembly assembly) 
+        void PopulateDocuments(System.Reflection.Assembly assembly) 
         {
             foreach (var resourceName in Array.FindAll(assembly.GetManifestResourceNames(), x => x.StartsWith(kResourcePathPrefix) && x.EndsWith("._xml")))
             {
-                using (var reader = new StreamReader(assembly.GetManifestResourceStream(resourceName)))
-                {
-                    var xmlDocument = new XmlDocument();
-                    xmlDocument.LoadXml(reader.ReadToEnd());
-                    mXmlDocuments.Add(resourceName, xmlDocument);
-                }
+                mDocuments.Add(resourceName, XDocument.Load(assembly.GetManifestResourceStream(resourceName)));
             }
         }
 
         public void AddDataEntry(string name = "", string creator = "", XmlTypes xmlTypes = XmlTypes.All)
         {
-            var xmlDocument = GetResourceAsXmlDocument(XmlTypes.Data);
-            XmlNode root = xmlDocument.SelectSingleNode("CCLoader"),
-            clonedNode = root.ChildNodes[1].CloneNode(true);
-            foreach (XmlNode childNode in clonedNode.ChildNodes)
+            var document = GetResourceAsXmlDocument(XmlTypes.Data);
+            var documentEnumerator = document.Descendants("CCLoader").GetEnumerator();
+            documentEnumerator.MoveNext();
+            var rootElement = documentEnumerator.Current;
+            var rootEnumerator = rootElement.Descendants("Data").GetEnumerator();
+            rootEnumerator.MoveNext();
+            var clonedElement = new XElement(rootEnumerator.Current);
+            foreach (var childElement in clonedElement.Descendants())
             {
-                switch (childNode.Name)
+                switch (childElement.Name.LocalName)
                 {
                     case "Name":
-                        childNode.InnerText = name;
+                        childElement.Value = name;
                         break;
                     case "Creator":
-                        childNode.InnerText = creator;
+                        childElement.Value = creator;
                         break;
                     case "Books_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Books) == 0 ? "" : AssemblyName + "_Books.xml";
+                        childElement.Value = (xmlTypes & XmlTypes.Books) == 0 ? "" : AssemblyName + "_Books.xml";
                         break;
                     case "Buffs_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Buffs) == 0 ? "" : AssemblyName + "_Buffs.xml";
+                        childElement.Value = (xmlTypes & XmlTypes.Buffs) == 0 ? "" : AssemblyName + "_Buffs.xml";
                         break;
                     case "EventHandlers_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.EventHandlers) == 0 ? "" : AssemblyName + "_EventHandlers.xml";
+                        childElement.Value = (xmlTypes & XmlTypes.EventHandlers) == 0 ? "" : AssemblyName + "_EventHandlers.xml";
                         break;
                     case "Ingredients_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Ingredients) == 0 ? "" : AssemblyName + "_Ingredients.xml";
+                        childElement.Value = (xmlTypes & XmlTypes.Ingredients) == 0 ? "" : AssemblyName + "_Ingredients.xml";
                         break;
                     case "Plants_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Plants) == 0 ? "" : AssemblyName + "_Plants.xml";
+                        childElement.Value = (xmlTypes & XmlTypes.Plants) == 0 ? "" : AssemblyName + "_Plants.xml";
                         break;
                     case "Recipes_XML":
-                        childNode.InnerText = (xmlTypes & XmlTypes.Recipes) == 0 ? "" : AssemblyName + "_Recipes.xml";
+                        childElement.Value = (xmlTypes & XmlTypes.Recipes) == 0 ? "" : AssemblyName + "_Recipes.xml";
                         break;
                 }
             }
-            root.AppendChild(clonedNode);
+            rootElement.Add(clonedElement);
             var resourceIndexEntry = GetResourceIndexEntry(XmlTypes.Data);
             Package.DeleteResource(resourceIndexEntry);
             var xmlStream = new MemoryStream();
-            xmlDocument.Save(xmlStream);
+            document.Save(xmlStream);
             Package.AddResource(resourceIndexEntry, xmlStream, true);
         }
 
@@ -169,18 +168,18 @@ namespace Destrospean.CCLoaderGeneratorLibrary
             var scriptResourceKeyInstance = FNV64.GetHash(AssemblyName + ".dll");
             var nameMapResource = new NameMapResource.NameMapResource(0, null);
             nameMapResource.Add(scriptResourceKeyInstance, AssemblyName + ".dll");
-            foreach (var xmlDocumentKvp in mXmlDocuments)
+            foreach (var documentKvp in mDocuments)
             {
                 var xmlStream = new MemoryStream();
-                xmlDocumentKvp.Value.Save(xmlStream);
+                documentKvp.Value.Save(xmlStream);
                 var xmlResourceKey = scriptResourceKeyInstance;
-                if (((xmlTypes | XmlTypes.Data) & (XmlTypes)Enum.Parse(typeof(XmlTypes), xmlDocumentKvp.Key.Substring(xmlDocumentKvp.Key.IndexOf(".base.") + 7).Replace("._xml", ""), true)) == 0)
+                if (((xmlTypes | XmlTypes.Data) & (XmlTypes)Enum.Parse(typeof(XmlTypes), documentKvp.Key.Substring(documentKvp.Key.IndexOf(".base.") + 7).Replace("._xml", ""), true)) == 0)
                 {
                     continue;
                 }
-                if (xmlDocumentKvp.Key != kResourcePathPrefix + "data._xml")
+                if (documentKvp.Key != kResourcePathPrefix + "data._xml")
                 {
-                    var xmlResourceName = AssemblyName + xmlDocumentKvp.Key.Substring(xmlDocumentKvp.Key.IndexOf(".base.") + 6).Replace("_xml", "xml");
+                    var xmlResourceName = AssemblyName + documentKvp.Key.Substring(documentKvp.Key.IndexOf(".base.") + 6).Replace("_xml", "xml");
                     xmlResourceKey = FNV64.GetHash(xmlResourceName);
                     nameMapResource.Add(xmlResourceKey, xmlResourceName);
                 }
@@ -193,13 +192,11 @@ namespace Destrospean.CCLoaderGeneratorLibrary
                 }.Stream, true);
         }
 
-        public XmlDocument GetResourceAsXmlDocument(XmlTypes xmlType)
+        public XDocument GetResourceAsXmlDocument(XmlTypes xmlType)
         {
-            var xmlDocument = new XmlDocument();
             var xmlStream = ((APackage)Package).GetResource(GetResourceIndexEntry(xmlType));
             xmlStream.Position = 0;
-            xmlDocument.Load(xmlStream);
-            return xmlDocument;
+            return XDocument.Load(xmlStream);
         }
 
         public IResourceIndexEntry GetResourceIndexEntry(XmlTypes xmlType)
@@ -207,20 +204,18 @@ namespace Destrospean.CCLoaderGeneratorLibrary
             return Package.Find(x => x.ResourceType == 0x333406C && x.Instance == FNV64.GetHash(xmlType == XmlTypes.Data ? (AssemblyName + ".dll") : (AssemblyName + "_" + xmlType + ".xml")));
         }
 
-        public void ReplaceXmlResource(XmlTypes xmlType, XmlDocument xmlDocument)
+        public void ReplaceXmlResource(XmlTypes xmlType, XDocument document)
         {
             var resourceIndexEntry = GetResourceIndexEntry(xmlType);
             Package.DeleteResource(resourceIndexEntry);
             var xmlStream = new MemoryStream();
-            xmlDocument.Save(xmlStream);
+            document.Save(xmlStream);
             Package.AddResource(resourceIndexEntry, xmlStream, true);
         }
 
         public void ReplaceXmlResource(XmlTypes xmlType, string xmlString)
         {
-            var xmlDocument = new XmlDocument();
-            xmlDocument.LoadXml(xmlString);
-            ReplaceXmlResource(xmlType, xmlDocument);
+            ReplaceXmlResource(xmlType, XDocument.Parse(xmlString));
         }
     }
 }
